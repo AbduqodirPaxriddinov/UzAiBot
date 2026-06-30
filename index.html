@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UzAiBot — Ваш ИИ-Партнер и Мультимодальный Ассистент</title>
+  <meta name="description" content="Универсальный умный собеседник UzAiBot: живое общение, поиск в сети, голосовой ввод и анализ файлов.">
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <div class="brand-logo">
+            <i class="fa-solid fa-brain-circuit"></i>
+          </div>
+          <div class="brand-text">
+            <h2>UzAiBot</h2>
+            <span>AI COMPANION 3.5</span>
+          </div>
+        </div>
+        <button class="icon-btn close-sidebar-btn" id="closeSidebarBtn" title="Скрыть меню">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <button class="btn btn-primary new-chat-btn" id="newChatBtn">
+        <i class="fa-solid fa-plus"></i> Новый диалог
+      </button>
+
+      <div class="chat-history-section">
+        <span class="section-title"><i class="fa-regular fa-clock"></i> История диалогов</span>
+        <ul class="chat-list" id="chatList">
+          <li class="chat-item active">
+            <i class="fa-regular fa-message"></i>
+            <span class="chat-title">Дружеский разговор</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="theme-toggle" id="themeToggleBtn" title="Переключить тему">
+          <div class="theme-option active" id="darkThemeOpt"><i class="fa-solid fa-moon"></i> Темная</div>
+          <div class="theme-option" id="lightThemeOpt"><i class="fa-solid fa-sun"></i> Светлая</div>
+        </div>
+
+        <div class="hosting-badge" id="hostingGuideBtn" title="Руководство по 24/7 серверу">
+          <i class="fa-solid fa-server"></i>
+          <span>Работа 24/7 в облаке</span>
+          <i class="fa-solid fa-chevron-right arrow"></i>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CHAT AREA -->
+    <main class="main-content">
+      <!-- Top Header -->
+      <header class="chat-header">
+        <div class="header-left">
+          <button class="icon-btn mobile-menu-btn" id="openSidebarBtn" title="Открыть меню">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+          <div class="model-status">
+            <span class="status-dot"></span>
+            <span class="model-name">UzAiBot Companion</span>
+            <span class="latency-badge"><i class="fa-solid fa-bolt"></i> 10ms</span>
+          </div>
+        </div>
+
+        <div class="header-controls">
+          <div class="toggle-pill-group" id="modeToggle">
+            <button class="pill-btn active" data-mode="fast">⚡ Кратко</button>
+            <button class="pill-btn" data-mode="detailed">🧠 Подробно</button>
+          </div>
+
+          <button class="toggle-btn" id="webSearchToggle" title="Поиск в интернете в реальном времени">
+            <i class="fa-solid fa-globe"></i>
+            <span>Поиск 24/7</span>
+          </button>
+
+          <button class="icon-btn widget-drawer-toggle" id="toggleWidgetsBtn" title="Виджеты и инструменты">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- Chat Messages Container -->
+      <div class="messages-container" id="messagesContainer">
+        <!-- Welcome Hero Screen -->
+        <div class="welcome-hero" id="welcomeHero">
+          <div class="hero-icon">
+            <i class="fa-solid fa-heart-pulse"></i>
+          </div>
+          <h1>Привет! Я UzAiBot — твой ИИ-партнер и ассистент</h1>
+          <p>Я всегда рядом, чтобы просто поболтать, ободрить, решить сложную задачу или помочь с учебой!</p>
+
+          <div class="suggestion-grid">
+            <div class="suggestion-card" data-prompt="Привет! Как твои дела сегодня? Давай просто пообщаемся!">
+              <div class="card-icon"><i class="fa-solid fa-comments"></i></div>
+              <div class="card-text">
+                <strong>Поговорить по душам</strong>
+                <span>Дружеский разговор на любую тему</span>
+              </div>
+            </div>
+            <div class="suggestion-card" data-prompt="Напиши быстрый скрипт на Python для обработки данных">
+              <div class="card-icon"><i class="fa-solid fa-code"></i></div>
+              <div class="card-text">
+                <strong>Написать код</strong>
+                <span>Скрипт на Python или JavaScript</span>
+              </div>
+            </div>
+            <div class="suggestion-card" data-prompt="Какая сейчас погода в Ташкенте и курс доллара?">
+              <div class="card-icon"><i class="fa-solid fa-cloud-sun"></i></div>
+              <div class="card-text">
+                <strong>Данные 24/7</strong>
+                <span>Погода и курсы валют</span>
+              </div>
+            </div>
+            <div class="suggestion-card" data-prompt="Расскажи интересный факт на сегодня и какую-нибудь мотивирующую мысль">
+              <div class="card-icon"><i class="fa-solid fa-lightbulb"></i></div>
+              <div class="card-text">
+                <strong>Вдохновение</strong>
+                <span>Интересный факт и мотивация</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action Prompt Chips -->
+      <div class="quick-chips-bar" id="quickChipsBar">
+        <button class="chip-btn" data-chip="💬 Привет! Расскажи о себе, как настроение?"><i class="fa-regular fa-smile"></i> Поговорить</button>
+        <button class="chip-btn" data-chip="🌤 Погода и курс доллара сегодня"><i class="fa-solid fa-cloud-sun"></i> Погода & Курсы</button>
+        <button class="chip-btn" data-chip="💡 Дай совет, как быстро выучить программирование"><i class="fa-solid fa-lightbulb"></i> Полезный совет</button>
+        <button class="chip-btn" data-chip="💻 Напиши пример кода на JavaScript"><i class="fa-solid fa-code"></i> Код</button>
+      </div>
+
+      <!-- Attached Files Preview Bar -->
+      <div class="attached-files-bar hidden" id="attachedFilesBar"></div>
+
+      <!-- Voice Waveform Indicator -->
+      <div class="voice-wave-bar hidden" id="voiceWaveBar">
+        <div class="voice-status">
+          <i class="fa-solid fa-microphone-lines pulse"></i>
+          <span>Слушаю вас... Говорите на любом языке</span>
+        </div>
+        <button class="btn-stop-voice" id="stopVoiceBtn">Завершить</button>
+      </div>
+
+      <!-- Composer Input Box -->
+      <div class="composer-container">
+        <div class="composer-box">
+          <button class="composer-btn" id="attachFileBtn" title="Прикрепить файл или фото">
+            <i class="fa-solid fa-paperclip"></i>
+          </button>
+          <input type="file" id="fileInput" hidden accept="image/*,.txt,.csv,.json,.pdf,.doc,.docx,.py,.js">
+
+          <textarea id="promptInput" placeholder="Нажмите на готовую кнопку выше или напишите мне сообщение..." rows="1"></textarea>
+
+          <button class="composer-btn voice-btn" id="voiceMicBtn" title="Голосовой ввод">
+            <i class="fa-solid fa-microphone"></i>
+          </button>
+
+          <button class="send-btn" id="sendBtn" title="Отправить запрос">
+            <i class="fa-solid fa-arrow-up"></i>
+          </button>
+        </div>
+        <div class="composer-footer-text">
+          <span>UzAiBot — Ваш надежный и умный виртуальный собеседник.</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- RIGHT WIDGETS DRAWER -->
+    <aside class="widgets-drawer" id="widgetsDrawer">
+      <div class="drawer-header">
+        <h3><i class="fa-solid fa-grip"></i> Инструменты UzAiBot</h3>
+        <button class="icon-btn" id="closeWidgetsBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="drawer-content">
+        <div class="widget-card weather-widget" id="weatherWidget">
+          <div class="widget-head">
+            <span><i class="fa-solid fa-location-dot"></i> <strong id="wCity">Ташкент</strong></span>
+            <span class="widget-tag">Live</span>
+          </div>
+          <div class="weather-body">
+            <div class="w-main">
+              <span class="w-temp" id="wTemp">+24°C</span>
+              <span class="w-cond" id="wCond">Ясно ☀️</span>
+            </div>
+            <div class="w-details">
+              <div><i class="fa-solid fa-droplet"></i> Влажность: <span id="wHum">45%</span></div>
+              <div><i class="fa-solid fa-wind"></i> Ветер: <span id="wWind">3.2 м/с</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="widget-card currency-widget">
+          <div class="widget-head">
+            <span><i class="fa-solid fa-coins"></i> Курсы Валют</span>
+            <button class="btn-refresh" id="refreshCurrencyBtn"><i class="fa-solid fa-rotate"></i></button>
+          </div>
+          <div class="currency-list">
+            <div class="currency-row">
+              <span>🇺🇸 USD / UZS</span>
+              <strong id="rateUsd">12,850.00</strong>
+            </div>
+            <div class="currency-row">
+              <span>🇪🇺 EUR / UZS</span>
+              <strong id="rateEur">13,920.00</strong>
+            </div>
+            <div class="currency-row">
+              <span>🇷🇺 RUB / UZS</span>
+              <strong id="rateRub">140.50</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="widget-card clock-widget">
+          <div class="widget-head">
+            <span><i class="fa-regular fa-clock"></i> Время и Часовые Пояса</span>
+          </div>
+          <div class="clock-display">
+            <h2 id="liveClock">00:00:00</h2>
+            <p id="liveDate">30 июня 2026</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- 24/7 DEPLOYMENT MODAL GUIDE -->
+  <div class="modal-overlay hidden" id="deployModal">
+    <div class="modal-card large-modal">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-server"></i> Как запустить UzAiBot 24/7 (Без ПК)</h3>
+        <button class="icon-btn" id="closeDeployModalBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body markdown-body">
+        <p>Чтобы UzAiBot и ваш Телеграм Бот работали постоянно и были доступны 24/7:</p>
+        <ol>
+          <li><strong>Render.com (Бесплатно)</strong>: Загрузите проект на GitHub -> Создайте "Web Service" на Render -> Вкажите <code>npm start</code>.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/widgets.js"></script>
+  <script src="/js/voice.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
